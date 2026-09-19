@@ -205,7 +205,7 @@
 
     <div class="container">
         <div class="product-card">
-            <!-- آپ کی بھیجی گئی اصلی تصویر (AirPods Pro) -->
+            <!-- تصویر -->
             <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600" alt="AirPods Pro" class="product-image">
             
             <div class="product-details">
@@ -219,7 +219,7 @@
 
                 <!-- آرڈر فارم -->
                 <div class="form-section">
-                    <div class="form-title">Enter Your Complete Order Details</div>
+                    <div class="form-title">Enter Your Complete Delivery Details</div>
                     
                     <div class="input-group">
                         <label>Your Full Name:</label>
@@ -228,7 +228,7 @@
 
                     <div class="input-group">
                         <label>Phone Number:</label>
-                        <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03001234567">
+                        <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03007226720">
                     </div>
 
                     <div class="input-group">
@@ -277,13 +277,14 @@
         }
         updateTimer();
 
-        // واٹس ایپ پر مکمل آرڈر بھیجنے کا فنکشن
+        // آپ کا بالکل درست واٹس ایپ نمبر (923007226720) یہاں سیٹ کر دیا گیا ہے
         function submitOrder() {
             const name = document.getElementById('cust-name').value.trim();
             const phone = document.getElementById('cust-phone').value.trim();
             const address = document.getElementById('cust-address').value.trim();
             const payment = document.getElementById('pay-method').value;
-            const shopWhatsApp = "92300270720"; // آپ کا نمبر
+            
+            const shopWhatsApp = "923007226720"; 
 
             if(!name || !phone || !address) {
                 alert("Please fill in your Name, Phone Number, and Complete Address to place the order!");
