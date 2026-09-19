@@ -50,6 +50,19 @@
             font-weight: 600;
             font-size: 14px;
         }
+        .live-stats {
+            background: #0f172a;
+            color: #38bdf8;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            border-bottom: 1px solid #1e293b;
+        }
+        .live-stats span {
+            color: #22c55e;
+            font-weight: 700;
+        }
         .timer-container {
             background: #1e293b;
             color: white;
@@ -194,19 +207,24 @@
         🔥 EVERY WEEK A NEW DEAL LIVE! LIMITED TIME OFFER 🔥
     </div>
 
-    <!-- Timer Section -->
+    <!-- Live Visitors Counter -->
+    <div class="live-stats">
+        👀 Live Watchers: <span id="visitor-count">48</span> people viewing this deal right now
+    </div>
+
+    <!-- Timer Section (Extended Timer) -->
     <div class="timer-container" id="deal-timer">
         <div>Deal Ends In:</div>
-        <div class="timer-box"><span id="days">06</span>D</div>
-        <div class="timer-box"><span id="hours">12</span>H</div>
-        <div class="timer-box"><span id="mins">45</span>M</div>
-        <div class="timer-box"><span id="secs">30</span>S</div>
+        <div class="timer-box"><span id="days">07</span>D</div>
+        <div class="timer-box"><span id="hours">00</span>H</div>
+        <div class="timer-box"><span id="mins">00</span>M</div>
+        <div class="timer-box"><span id="secs">00</span>S</div>
     </div>
 
     <div class="container">
         <div class="product-card">
-            <!-- تصویر -->
-            <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600" alt="AirPods Pro" class="product-image">
+            <!-- نئی اور بہترین ایئربड्स پرو کی تصویر -->
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600" alt="AirPods Pro" class="product-image">
             
             <div class="product-details">
                 <span class="badge">Weekly Special Deal</span>
@@ -228,7 +246,7 @@
 
                     <div class="input-group">
                         <label>Phone Number:</label>
-                        <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03007226720">
+                        <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03286688441">
                     </div>
 
                     <div class="input-group">
@@ -256,9 +274,15 @@
     </footer>
 
     <script>
-        // کاؤنٹ ڈاؤن ٹائمر
+        // لائیو ویوز کاؤنٹر کو ہلکا ہلکا اوپر نیچے کرنے کا فنکشن تاکہ اصلی لگے
+        setInterval(() => {
+            const randomViewers = Math.floor(Math.random() * (65 - 35 + 1)) + 35;
+            document.getElementById('visitor-count').innerText = randomViewers;
+        }, 5000);
+
+        // ۷ دن کا ٹائمر سیٹ کرنے کا کوڈ
         function updateTimer() {
-            const futureDate = new Date().getTime() + (6 * 24 * 60 * 60 * 1000) + (12 * 60 * 60 * 1000);
+            const futureDate = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
             
             setInterval(() => {
                 const now = new Date().getTime();
@@ -277,14 +301,14 @@
         }
         updateTimer();
 
-        // آپ کا بالکل درست واٹس ایپ نمبر (923007226720) یہاں سیٹ کر دیا گیا ہے
+        // آپ کا نیا درست واٹس ایپ نمبر (923286688441)
         function submitOrder() {
             const name = document.getElementById('cust-name').value.trim();
             const phone = document.getElementById('cust-phone').value.trim();
             const address = document.getElementById('cust-address').value.trim();
             const payment = document.getElementById('pay-method').value;
             
-            const shopWhatsApp = "923007226720"; 
+            const shopWhatsApp = "923286688441"; 
 
             if(!name || !phone || !address) {
                 alert("Please fill in your Name, Phone Number, and Complete Address to place the order!");
