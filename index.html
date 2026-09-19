@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Karam Mobiles & Accessories</title>
+    <title>Al-Karam Mobiles & Accessories - Weekly Deal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --whatsapp-color: #25D366;
-            --dark-color: #1e293b;
-            --light-color: #f8fafc;
-            --border-color: #e2e8f0;
+            --primary: #2563eb;
+            --whatsapp: #25D366;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --danger: #dc2626;
         }
         * {
             margin: 0;
@@ -20,111 +20,166 @@
             font-family: 'Poppins', sans-serif;
         }
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: var(--light);
+            color: var(--dark);
             line-height: 1.6;
+            padding-bottom: 40px;
         }
         header {
             background: linear-gradient(135deg, #1e293b, #0f172a);
             color: white;
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 15px;
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
         }
         header h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 5px;
             letter-spacing: 0.5px;
         }
         header p {
-            font-size: 14px;
+            font-size: 13px;
             color: #94a3b8;
+            margin-top: 3px;
+        }
+        .promo-banner {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .timer-container {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 500;
+        }
+        .timer-box span {
+            color: #f59e0b;
+            font-weight: 700;
         }
         .container {
-            max-width: 600px;
+            max-width: 550px;
             margin: 20px auto;
             padding: 0 15px;
         }
         .product-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-            transition: transform 0.2s;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
         }
-        .product-card img {
+        .product-image {
             width: 100%;
-            height: 220px;
+            height: 300px;
             object-fit: cover;
         }
-        .product-info {
+        .product-details {
             padding: 20px;
         }
-        .product-title {
-            font-size: 18px;
-            font-weight: 600;
+        .badge {
+            background: #fee2e2;
+            color: var(--danger);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
             margin-bottom: 8px;
-            color: var(--dark-color);
+            text-transform: uppercase;
         }
-        .product-price {
-            font-size: 16px;
+        .product-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .price-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .current-price {
+            font-size: 24px;
             font-weight: 700;
             color: #059669;
-            margin-bottom: 15px;
         }
-        .form-group {
+        .old-price {
+            font-size: 16px;
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .form-section {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .form-title {
+            font-size: 14px;
+            font-weight: 600;
             margin-bottom: 12px;
-            text-align: left;
+            color: #334155;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 5px;
         }
-        .form-group label {
+        .input-group {
+            margin-bottom: 12px;
+        }
+        .input-group label {
             display: block;
             font-size: 12px;
             font-weight: 500;
-            margin-bottom: 4px;
             color: #64748b;
+            margin-bottom: 4px;
         }
         .form-control {
             width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
             border-radius: 8px;
             font-size: 14px;
             outline: none;
-            background: #fff;
+            background: white;
+            transition: border 0.2s;
         }
         .form-control:focus {
-            border-color: var(--primary-color);
+            border-color: var(--primary);
         }
-        .order-btn {
+        .whatsapp-order-btn {
             display: block;
             width: 100%;
-            background-color: var(--whatsapp-color);
+            background-color: var(--whatsapp);
             color: white;
             border: none;
-            padding: 12px;
+            padding: 14px;
             font-size: 16px;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             text-align: center;
             text-decoration: none;
-            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
             transition: background 0.2s;
         }
-        .order-btn:hover {
+        .whatsapp-order-btn:hover {
             background-color: #1ebe5d;
         }
         footer {
             text-align: center;
-            padding: 20px;
+            margin-top: 30px;
             font-size: 12px;
             color: #64748b;
-            border-top: 1px solid var(--border-color);
-            margin-top: 40px;
-            background: white;
         }
     </style>
 </head>
@@ -132,83 +187,68 @@
 
     <header>
         <h1>Al-Karam Mobiles & Accessories</h1>
-        <p>Premium Quality Airbuds, Mobiles & Gadgets</p>
+        <p>Your Trusted Store for Premium Gadgets</p>
     </header>
 
+    <div class="promo-banner">
+        🔥 EVERY WEEK A NEW DEAL LIVE! LIMITED TIME OFFER 🔥
+    </div>
+
+    <!-- Timer Section -->
+    <div class="timer-container" id="deal-timer">
+        <div>Deal Ends In:</div>
+        <div class="timer-box"><span id="days">06</span>D</div>
+        <div class="timer-box"><span id="hours">12</span>H</div>
+        <div class="timer-box"><span id="mins">45</span>M</div>
+        <div class="timer-box"><span id="secs">30</span>S</div>
+    </div>
+
     <div class="container">
-
-        <!-- Product 1: Airbuds -->
         <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600" alt="Airbuds">
-            <div class="product-info">
-                <div class="product-title">Wireless Pro Airbuds (High Bass)</div>
-                <div class="product-price">Rs. 2,499</div>
+            <!-- آپ کی بھیجی گئی اصلی تصویر (AirPods Pro) -->
+            <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600" alt="AirPods Pro" class="product-image">
+            
+            <div class="product-details">
+                <span class="badge">Weekly Special Deal</span>
+                <div class="product-title">AirPods Pro (High Quality)</div>
                 
-                <div class="form-group">
-                    <label>Select Payment Method:</label>
-                    <select id="pay-1" class="form-control">
-                        <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
-                        <option value="JazzCash Advance">JazzCash (Advance Payment)</option>
-                    </select>
+                <div class="price-section">
+                    <div class="current-price">Rs. 650</div>
+                    <div class="old-price">Rs. 1,500</div>
                 </div>
 
-                <div class="form-group">
-                    <label>Your City / Delivery Address:</label>
-                    <input type="text" id="addr-1" class="form-control" placeholder="Enter your address...">
+                <!-- آرڈر فارم -->
+                <div class="form-section">
+                    <div class="form-title">Enter Your Complete Order Details</div>
+                    
+                    <div class="input-group">
+                        <label>Your Full Name:</label>
+                        <input type="text" id="cust-name" class="form-control" placeholder="e.g. Ali Ahmed">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Phone Number:</label>
+                        <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03001234567">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Complete Delivery Address & City:</label>
+                        <input type="text" id="cust-address" class="form-control" placeholder="House #, Street, City...">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Select Payment Method:</label>
+                        <select id="pay-method" class="form-control">
+                            <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+                            <option value="JazzCash Advance">JazzCash (Advance Payment)</option>
+                        </select>
+                    </div>
                 </div>
 
-                <a href="#" class="order-btn" onclick="sendOrder('Wireless Pro Airbuds', 'Rs. 2,499', 'pay-1', 'addr-1')">Order via WhatsApp 📱</a>
+                <!-- واٹس ایپ آرڈر بٹن -->
+                <button class="whatsapp-order-btn" onclick="submitOrder()">Place Order via WhatsApp 📱</button>
             </div>
         </div>
-
-        <!-- Product 2: Mobile Phones -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600" alt="Smartphones">
-            <div class="product-info">
-                <div class="product-title">Latest Smartphones (All Brands Available)</div>
-                <div class="product-price">Best Market Price</div>
-                
-                <div class="form-group">
-                    <label>Select Payment Method:</label>
-                    <select id="pay-2" class="form-control">
-                        <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
-                        <option value="JazzCash Advance">JazzCash (Advance Payment)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Specify Model & City:</label>
-                    <input type="text" id="addr-2" class="form-control" placeholder="e.g. Model name & your city...">
-                </div>
-
-                <a href="#" class="order-btn" onclick="sendOrder('Smartphone Order', 'Best Market Price', 'pay-2', 'addr-2')">Order via WhatsApp 📱</a>
-            </div>
-        </div>
-
-        <!-- Product 3: Mobile Accessories -->
-        <div class="product-card">
-            <img src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=600" alt="Accessories">
-            <div class="product-info">
-                <div class="product-title">Premium Mobile Accessories & Covers</div>
-                <div class="product-price">Starting from Rs. 499</div>
-                
-                <div class="form-group">
-                    <label>Select Payment Method:</label>
-                    <select id="pay-3" class="form-control">
-                        <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
-                        <option value="JazzCash Advance">JazzCash (Advance Payment)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Your City / Details:</label>
-                    <input type="text" id="addr-3" class="form-control" placeholder="Enter details...">
-                </div>
-
-                <a href="#" class="order-btn" onclick="sendOrder('Mobile Accessories', 'Starting from Rs. 499', 'pay-3', 'addr-3')">Order via WhatsApp 📱</a>
-            </div>
-        </div>
-
     </div>
 
     <footer>
@@ -216,14 +256,43 @@
     </footer>
 
     <script>
-        function sendOrder(productName, price, payId, addrId) {
-            const paymentMethod = document.getElementById(payId).value;
-            const address = document.getElementById(addrId).value || "Not specified";
-            const phoneNumber = "92300270720"; // آپ کا نیا نمبر
-
-            const message = `Hello Al-Karam Mobiles! I want to order:\n\n*Product:* ${productName}\n*Price:* ${price}\n*Payment:* ${paymentMethod}\n*Address/Details:* ${address}\n\nPlease confirm my order.`;
+        // کاؤنٹ ڈاؤن ٹائمر
+        function updateTimer() {
+            const futureDate = new Date().getTime() + (6 * 24 * 60 * 60 * 1000) + (12 * 60 * 60 * 1000);
             
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = futureDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+                document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+                document.getElementById("mins").innerText = mins < 10 ? "0" + mins : mins;
+                document.getElementById("secs").innerText = secs < 10 ? "0" + secs : secs;
+            }, 1000);
+        }
+        updateTimer();
+
+        // واٹس ایپ پر مکمل آرڈر بھیجنے کا فنکشن
+        function submitOrder() {
+            const name = document.getElementById('cust-name').value.trim();
+            const phone = document.getElementById('cust-phone').value.trim();
+            const address = document.getElementById('cust-address').value.trim();
+            const payment = document.getElementById('pay-method').value;
+            const shopWhatsApp = "92300270720"; // آپ کا نمبر
+
+            if(!name || !phone || !address) {
+                alert("Please fill in your Name, Phone Number, and Complete Address to place the order!");
+                return;
+            }
+
+            const message = `New Order Received! 🛒\n\n*Store:* Al-Karam Mobiles & Accessories\n*Product:* AirPods Pro\n*Price:* Rs. 650\n\n*Customer Details:*\n*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${address}\n*Payment Method:* ${payment}`;
+
+            const whatsappUrl = `https://wa.me/${shopWhatsApp}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
     </script>
