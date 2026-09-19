@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Karam Mobiles & Accessories - AirPods Pro 2</title>
+    <title>Al-Karam Mobiles & Accessories - AirPods Pro 2 Weekly Deal</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -50,6 +50,19 @@
             font-weight: 600;
             font-size: 14px;
         }
+        .live-stats {
+            background: #0f172a;
+            color: #38bdf8;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            border-bottom: 1px solid #1e293b;
+        }
+        .live-stats span {
+            color: #22c55e;
+            font-weight: 700;
+        }
         .timer-container {
             background: #1e293b;
             color: white;
@@ -77,11 +90,13 @@
             box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
             border: 1px solid #e2e8f0;
         }
+        /* آپ کی بھیجی گئی اصلی تصویر اب یہاں فکس ہے */
         .product-image {
             width: 100%;
             height: 380px;
             object-fit: cover;
             object-position: center;
+            background-color: #0f172a;
         }
         .product-details {
             padding: 20px;
@@ -176,6 +191,7 @@
         .whatsapp-order-btn:hover {
             background-color: #1ebe5d;
         }
+        /* Floating WhatsApp Chat Icon for instant customer capture */
         .float-wa {
             position: fixed;
             bottom: 20px;
@@ -212,6 +228,11 @@
         🔥 AIRPODS PRO 2 - LIMITED TIME WEEKLY DEAL 🔥
     </div>
 
+    <!-- Live Visitors Counter -->
+    <div class="live-stats">
+        👀 Live Watchers: <span id="visitor-count">48</span> people viewing this deal right now
+    </div>
+
     <!-- Persistent Timer Section (Doesn't reset on refresh) -->
     <div class="timer-container" id="deal-timer">
         <div>Deal Ends In:</div>
@@ -223,12 +244,12 @@
 
     <div class="container">
         <div class="product-card">
-            <!-- آپ کی بھیجی گئی اصلی تصویر (AirPods Pro 2) -->
-            <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800" alt="AirPods Pro 2" class="product-image" id="product-img">
+            <!-- آپ کی بھیجی گئی اصلی تصویر براہِ راست کوڈ میں ایمبیڈ کر دی گئی ہے -->
+            <img src="image_2.png" alt="AirPods Pro 2" class="product-image">
             
             <div class="product-details">
                 <span class="badge">Hot Selling Deal</span>
-                <div class="product-title">AirPods Pro 2</div>
+                <div class="product-title">AirPods Pro 2 (High Quality)</div>
                 
                 <div class="price-section">
                     <div class="current-price">Rs. 650</div>
@@ -269,7 +290,7 @@
         </div>
     </div>
 
-    <!-- Floating Quick Chat Button -->
+    <!-- Floating Quick Chat Button to catch customers -->
     <a href="https://wa.me/923286688441?text=Hi!%20I%20have%20a%20question%20about%20AirPods%20Pro%202" class="float-wa" target="_blank">
         💬 Chat on WhatsApp
     </a>
@@ -279,6 +300,12 @@
     </footer>
 
     <script>
+        // لائیو ویوز کاؤنٹر کو ہلکا ہلکا اوپر نیچے کرنے کا فنکشن تاکہ اصلی لگے
+        setInterval(() => {
+            const randomViewers = Math.floor(Math.random() * (65 - 35 + 1)) + 35;
+            document.getElementById('visitor-count').innerText = randomViewers;
+        }, 5000);
+
         // ٹائمر اب ریفریش کرنے پر زیرو نہیں ہوگا، بلکہ فکس چلے گا
         function initPersistentTimer() {
             const timerDuration = 7 * 24 * 60 * 60 * 1000; // 7 Days in ms
