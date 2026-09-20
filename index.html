@@ -6,7 +6,7 @@
     <title>Al-Karam Mobiles - Stock & Sales System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2563eb; --success: #059669; --danger: #dc2626; --dark: #0f172a; --light: #f8fafc; }
+        :root { --primary: #2563eb; --success: #059669; --danger: #dc2626; --warning: #d97706; --dark: #0f172a; --light: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: var(--light); color: var(--dark); padding: 20px; }
         .container { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
@@ -18,6 +18,8 @@
         .form-control { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
         .btn { background: var(--primary); color: white; border: none; padding: 10px; width: 100%; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 5px; }
         .btn-success { background: var(--success); }
+        .btn-warning { background: var(--warning); color: white; }
+        .btn-danger { background: var(--danger); }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
         table, th, td { border: 1px solid #cbd5e1; }
         th, td { padding: 8px; text-align: center; }
@@ -26,6 +28,7 @@
         .stat-card { flex: 1; background: #e0f2fe; padding: 12px; border-radius: 8px; text-align: center; }
         .stat-card h3 { font-size: 13px; color: #0369a1; }
         .stat-card p { font-size: 18px; font-weight: 700; color: #0284c7; }
+        .action-btns { display: flex; gap: 4px; justify-content: center; }
     </style>
 </head>
 <body>
@@ -33,16 +36,19 @@
     <div class="container">
         <h1>📱 Al-Karam Stock & Sales Manager</h1>
 
-        <!-- ڈیش بورڈ (منافع اور سیل کی سمری) -->
+        <!-- ڈیش بورڈ (منافع اور سیل کی سمری بمعہ پاسورڈ لاک) -->
         <div class="stats-box">
             <div class="stat-card">
                 <h3>Total Sales</h3>
-                <p id="total-sales">Rs. 0</p>
+                <p id="total-sales">****</p>
             </div>
             <div class="stat-card" style="background: #d1fae5;">
                 <h3 style="color: #065f46;">Total Profit</h3>
-                <p id="total-profit" style="color: #047857;">Rs. 0</p>
+                <p id="total-profit" style="color: #047857;">****</p>
             </div>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="btn" style="width: auto; padding: 6px 15px; font-size: 12px;" onclick="unlockStats()">Unlock Stats (Code)</button>
         </div>
 
         <!-- 1. نیا پروڈکٹ یا اسٹاک ایڈ کرنے کا فارم -->
@@ -57,26 +63,26 @@
                 <input type="number" id="item-qty" class="form-control" placeholder="e.g. 10">
             </div>
             <div class="input-group">
-                <label>Cost Price (खरीद मूल्य):</label>
+                <label>Cost Price (خرچہ):</label>
                 <input type="number" id="item-cost" class="form-control" placeholder="e.g. 500">
             </div>
             <div class="input-group">
-                <label>Selling Price (बिक्री मूल्य):</label>
+                <label>Selling Price (فروخت قیمت):</label>
                 <input type="number" id="item-price" class="form-control" placeholder="e.g. 650">
             </div>
             <button class="btn" onclick="addStock()">Add to Stock</button>
         </div>
 
-        <!-- 2. اسٹاک کی لسٹ اور سیل کرنے کا سیکشن -->
+        <!-- 2. اسٹاک کی لسٹ، سیل اور ایڈٹ کرنے کا سیکشن -->
         <div class="section">
-            <h2>🛒 Available Stock & Sell</h2>
+            <h2>🛒 Available Stock, Sell & Edit</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Item</th>
                         <th>Qty</th>
                         <th>Price</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="stock-table-body">
@@ -85,7 +91,7 @@
             </table>
         </div>
 
-        <!-- 3. آج کی سیلز ہسٹری -->
+        <!-- 3. سیلز ہسٹری -->
         <div class="section">
             <h2>📜 Sales History</h2>
             <table>
@@ -106,10 +112,22 @@
     <script>
         let stock = JSON.parse(localStorage.getItem('shop_stock')) || [];
         let sales = JSON.parse(localStorage.getItem('shop_sales')) || [];
+        let isUnlocked = false;
 
         function saveData() {
             localStorage.setItem('shop_stock', JSON.stringify(stock));
             localStorage.setItem('shop_sales', JSON.stringify(sales));
+        }
+
+        function unlockStats() {
+            let code = prompt("Enter Security Code:");
+            if (code === "P.AK.123") {
+                isUnlocked = true;
+                renderTables();
+                alert("Stats unlocked successfully!");
+            } else {
+                alert("Incorrect Code!");
+            }
         }
 
         function addStock() {
@@ -157,9 +175,37 @@
             sales.push({ name: item.name, qty: sellQty, profit: itemProfit, total: itemSales });
 
             if(item.qty === 0) {
-                stock.splice(index, 1); // اگر اسٹاک ختم ہو جائے تو لسٹ سے ہٹا دیں
+                stock.splice(index, 1);
             }
 
+            saveData();
+            renderTables();
+        }
+
+        function editItem(index) {
+            let item = stock[index];
+            let newName = prompt("Edit Item Name:", item.name);
+            if(newName === null) return;
+            
+            let newQty = prompt("Edit Quantity:", item.qty);
+            if(newQty === null) return;
+
+            let newCost = prompt("Edit Cost Price:", item.cost);
+            if(newCost === null) return;
+
+            let newPrice = prompt("Edit Selling Price:", item.price);
+            if(newPrice === null) return;
+
+            newQty = parseInt(newQty);
+            newCost = parseFloat(newCost);
+            newPrice = parseFloat(newPrice);
+
+            if(!newName || isNaN(newQty) || isNaN(newCost) || isNaN(newPrice)) {
+                alert("Invalid input values!");
+                return;
+            }
+
+            stock[index] = { ...item, name: newName, qty: newQty, cost: newCost, price: newPrice };
             saveData();
             renderTables();
         }
@@ -175,11 +221,15 @@
                         <td>${item.name}</td>
                         <td>${item.qty}</td>
                         <td>Rs. ${item.price}</td>
-                        <td><button class="btn btn-success" style="padding: 4px 8px; font-size: 11px;" onclick="sellItem(${index})">Sell</button></td>
+                        <td>
+                            <div class="action-btns">
+                                <button class="btn btn-success" style="padding: 3px 6px; font-size: 10px; margin-top:0;" onclick="sellItem(${index})">Sell</button>
+                                <button class="btn btn-warning" style="padding: 3px 6px; font-size: 10px; margin-top:0;" onclick="editItem(${index})">Edit</button>
+                            </div>
+                        </td>
                     </tr>
                 `;
             });
-            document.getElementById('stock-table-body').html = stockHtml; // Safe fallback below
             document.getElementById('stock-table-body').innerHTML = stockHtml;
 
             let salesHtml = '';
@@ -196,8 +246,13 @@
             });
             document.getElementById('sales-table-body').innerHTML = salesHtml;
 
-            document.getElementById('total-sales').innerText = `Rs. ${totalSalesAmount}`;
-            document.getElementById('total-profit').innerText = `Rs. ${totalProfitAmount}`;
+            if (isUnlocked) {
+                document.getElementById('total-sales').innerText = `Rs. ${totalSalesAmount}`;
+                document.getElementById('total-profit').innerText = `Rs. ${totalProfitAmount}`;
+            } else {
+                document.getElementById('total-sales').innerText = `****`;
+                document.getElementById('total-profit').innerText = `****`;
+            }
         }
 
         renderTables();
