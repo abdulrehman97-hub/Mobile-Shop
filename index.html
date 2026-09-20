@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Karam Mobiles - Stock & Sales System</title>
+    <title>Al-Karam Mobiles & Accessories - POS & Billing</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #2563eb; --success: #059669; --danger: #dc2626; --warning: #d97706; --dark: #0f172a; --light: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light); color: var(--dark); padding: 20px; }
-        .container { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { font-size: 20px; text-align: center; margin-bottom: 20px; color: var(--primary); }
-        .section { margin-bottom: 25px; padding: 15px; background: #f1f5f9; border-radius: 8px; }
-        .section h2 { font-size: 15px; margin-bottom: 10px; color: #334155; }
+        body { background-color: var(--light); color: var(--dark); padding: 15px; }
+        .container { max-width: 650px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { font-size: 20px; text-align: center; margin-bottom: 5px; color: var(--primary); }
+        .sub-title { font-size: 12px; text-align: center; color: #64748b; margin-bottom: 20px; }
+        .section { margin-bottom: 20px; padding: 15px; background: #f1f5f9; border-radius: 8px; }
+        .section h2 { font-size: 14px; margin-bottom: 10px; color: #334155; }
         .input-group { margin-bottom: 10px; }
         .input-group label { display: block; font-size: 12px; font-weight: 500; margin-bottom: 3px; }
-        .form-control { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
+        .form-control { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; background: white; }
         .btn { background: var(--primary); color: white; border: none; padding: 10px; width: 100%; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 5px; }
         .btn-success { background: var(--success); }
         .btn-warning { background: var(--warning); color: white; }
         .btn-danger { background: var(--danger); }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
         table, th, td { border: 1px solid #cbd5e1; }
-        th, td { padding: 8px; text-align: center; }
+        th, td { padding: 6px; text-align: center; }
         th { background: #e2e8f0; }
-        .stats-box { display: flex; gap: 10px; margin-bottom: 20px; }
-        .stat-card { flex: 1; background: #e0f2fe; padding: 12px; border-radius: 8px; text-align: center; }
-        .stat-card h3 { font-size: 13px; color: #0369a1; }
-        .stat-card p { font-size: 18px; font-weight: 700; color: #0284c7; }
+        .stats-box { display: flex; gap: 10px; margin-bottom: 15px; }
+        .stat-card { flex: 1; background: #e0f2fe; padding: 10px; border-radius: 8px; text-align: center; }
+        .stat-card h3 { font-size: 12px; color: #0369a1; }
+        .stat-card p { font-size: 16px; font-weight: 700; color: #0284c7; }
         .action-btns { display: flex; gap: 4px; justify-content: center; }
+
+        /* بل کا ڈیزائن (پرنٹ یا دیکھنے کے لیے) */
+        .invoice-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
+        .invoice-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+        .invoice-header { text-align: center; border-bottom: 2px dashed #cbd5e1; padding-bottom: 10px; margin-bottom: 10px; }
+        .invoice-details { font-size: 13px; margin-bottom: 10px; }
+        .invoice-details p { margin-bottom: 4px; }
+        .print-btn { background: #0f172a; color: white; margin-top: 15px; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>📱 Al-Karam Stock & Sales Manager</h1>
+        <h1>📱 Al-Karam Mobiles & Accessories</h1>
+        <div class="sub-title">Professional Stock, Sales & Billing System</div>
 
-        <!-- ڈیش بورڈ (منافع اور سیل کی سمری بمعہ پاسورڈ لاک) -->
+        <!-- ڈیش بورڈ بمعہ پاسورڈ لاک P.AK.123 -->
         <div class="stats-box">
             <div class="stat-card">
                 <h3>Total Sales</h3>
@@ -48,10 +58,10 @@
             </div>
         </div>
         <div style="text-align: center; margin-bottom: 20px;">
-            <button class="btn" style="width: auto; padding: 6px 15px; font-size: 12px;" onclick="unlockStats()">Unlock Stats (Code)</button>
+            <button class="btn" style="width: auto; padding: 5px 12px; font-size: 11px;" onclick="unlockStats()">Unlock Financials (P.AK.123)</button>
         </div>
 
-        <!-- 1. نیا پروڈکٹ یا اسٹاک ایڈ کرنے کا فارم -->
+        <!-- 1. اسٹاک ایڈ کرنے کا سیکشن -->
         <div class="section">
             <h2>📦 Add New Item to Stock</h2>
             <div class="input-group">
@@ -59,7 +69,7 @@
                 <input type="text" id="item-name" class="form-control" placeholder="e.g. AirPods Pro 2">
             </div>
             <div class="input-group">
-                <label>Quantity Available:</label>
+                <label>Quantity:</label>
                 <input type="number" id="item-qty" class="form-control" placeholder="e.g. 10">
             </div>
             <div class="input-group">
@@ -73,20 +83,20 @@
             <button class="btn" onclick="addStock()">Add to Stock</button>
         </div>
 
-        <!-- 2. اسٹاک کی لسٹ، سیل اور ایڈٹ کرنے کا سیکشن -->
+        <!-- 2. اسٹاک لسٹ، سیل اور ایڈٹ -->
         <div class="section">
-            <h2>🛒 Available Stock, Sell & Edit</h2>
+            <h2>🛒 Available Stock & Direct Billing</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Item</th>
                         <th>Qty</th>
                         <th>Price</th>
-                        <th>Actions</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="stock-table-body">
-                    <!-- یہاں اسٹاک شو ہوگا -->
+                    <!-- اسٹاک یہاں آئے گا -->
                 </tbody>
             </table>
         </div>
@@ -97,15 +107,30 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Customer</th>
                         <th>Item</th>
-                        <th>Sold Qty</th>
-                        <th>Profit</th>
+                        <th>Qty</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody id="sales-table-body">
-                    <!-- یہاں بکی ہوئی چیزیں آئیں گی -->
+                    <!-- سیلز ریکارڈ یہاں آئے گا -->
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- بل (Invoice) پاپ اپ ونڈو -->
+    <div class="invoice-modal" id="invoiceModal">
+        <div class="invoice-content">
+            <div class="invoice-header">
+                <h3>Al-Karam Mobiles & Accessories</h3>
+                <p style="font-size: 11px; color: #64748b;">Cash Receipt / Bill</p>
+            </div>
+            <div class="invoice-details" id="invoiceBody">
+                <!-- بل کا ڈیٹا یہاں جেনریٹ ہوگا -->
+            </div>
+            <button class="btn print-btn" onclick="closeInvoice()">Close / Done</button>
         </div>
     </div>
 
@@ -120,11 +145,11 @@
         }
 
         function unlockStats() {
-            let code = prompt("Enter Security Code:");
+            let code = prompt("Enter Security Code (P.AK.123):");
             if (code === "P.AK.123") {
                 isUnlocked = true;
                 renderTables();
-                alert("Stats unlocked successfully!");
+                alert("Financials Unlocked!");
             } else {
                 alert("Incorrect Code!");
             }
@@ -152,27 +177,36 @@
         }
 
         function sellItem(index) {
+            let custName = prompt("Enter Customer Name:", "Walk-in Customer");
+            if(custName === null) return;
+            let custAddress = prompt("Enter Customer Address / Phone:", "Faisalabad");
+            if(custAddress === null) return;
+
             let sellQty = prompt("Enter quantity to sell:", "1");
             if(!sellQty) return;
             sellQty = parseInt(sellQty);
 
-            if(isNaN(sellQty) || sellQty <= 0) {
-                alert("Invalid quantity!");
-                return;
-            }
-
-            if(sellQty > stock[index].qty) {
-                alert("Not enough stock available!");
-                return;
-            }
-
             let item = stock[index];
-            item.qty -= sellQty;
+            if(isNaN(sellQty) || sellQty <= 0 || sellQty > item.qty) {
+                alert("Invalid quantity or not enough stock!");
+                return;
+            }
 
-            let itemSales = sellQty * item.price;
+            item.qty -= sellQty;
+            let itemTotal = sellQty * item.price;
             let itemProfit = sellQty * (item.price - item.cost);
 
-            sales.push({ name: item.name, qty: sellQty, profit: itemProfit, total: itemSales });
+            let saleRecord = {
+                custName: custName || "Guest",
+                custAddress: custAddress || "N/A",
+                itemName: item.name,
+                qty: sellQty,
+                total: itemTotal,
+                profit: itemProfit,
+                date: new Date().toLocaleDateString()
+            };
+
+            sales.push(saleRecord);
 
             if(item.qty === 0) {
                 stock.splice(index, 1);
@@ -180,34 +214,47 @@
 
             saveData();
             renderTables();
+            showInvoice(saleRecord);
         }
 
         function editItem(index) {
             let item = stock[index];
             let newName = prompt("Edit Item Name:", item.name);
-            if(newName === null) return;
-            
             let newQty = prompt("Edit Quantity:", item.qty);
-            if(newQty === null) return;
-
             let newCost = prompt("Edit Cost Price:", item.cost);
-            if(newCost === null) return;
-
             let newPrice = prompt("Edit Selling Price:", item.price);
-            if(newPrice === null) return;
 
-            newQty = parseInt(newQty);
-            newCost = parseFloat(newCost);
-            newPrice = parseFloat(newPrice);
+            if(newName === null || newQty === null || newCost === null || newPrice === null) return;
 
-            if(!newName || isNaN(newQty) || isNaN(newCost) || isNaN(newPrice)) {
-                alert("Invalid input values!");
-                return;
-            }
+            stock[index] = {
+                ...item,
+                name: newName,
+                qty: parseInt(newQty),
+                cost: parseFloat(newCost),
+                price: parseFloat(newPrice)
+            };
 
-            stock[index] = { ...item, name: newName, qty: newQty, cost: newCost, price: newPrice };
             saveData();
             renderTables();
+        }
+
+        function showInvoice(sale) {
+            let html = `
+                <p><b>Date:</b> ${sale.date}</p>
+                <p><b>Customer Name:</b> ${sale.custName}</p>
+                <p><b>Address / Phone:</b> ${sale.custAddress}</p>
+                <hr style="border: 0.5px solid #cbd5e1; margin: 8px 0;">
+                <p><b>Item Purchased:</b> ${sale.itemName} (x${sale.qty})</p>
+                <p><b>Total Amount:</b> <span style="color: #059669; font-weight: bold;">Rs. ${sale.total}</span></p>
+                <hr style="border: 0.5px solid #cbd5e1; margin: 8px 0;">
+                <p style="text-align: center; font-size: 11px; color: #64748b;">Thank you for shopping with Al-Karam Mobiles!</p>
+            `;
+            document.getElementById('invoiceBody').innerHTML = html;
+            document.getElementById('invoiceModal').style.display = 'flex';
+        }
+
+        function closeInvoice() {
+            document.getElementById('invoiceModal').style.display = 'none';
         }
 
         function renderTables() {
@@ -223,8 +270,8 @@
                         <td>Rs. ${item.price}</td>
                         <td>
                             <div class="action-btns">
-                                <button class="btn btn-success" style="padding: 3px 6px; font-size: 10px; margin-top:0;" onclick="sellItem(${index})">Sell</button>
-                                <button class="btn btn-warning" style="padding: 3px 6px; font-size: 10px; margin-top:0;" onclick="editItem(${index})">Edit</button>
+                                <button class="btn btn-success" style="padding: 2px 5px; font-size: 10px; margin-top:0;" onclick="sellItem(${index})">Sell</button>
+                                <button class="btn btn-warning" style="padding: 2px 5px; font-size: 10px; margin-top:0;" onclick="editItem(${index})">Edit</button>
                             </div>
                         </td>
                     </tr>
@@ -238,9 +285,10 @@
                 totalProfitAmount += s.profit;
                 salesHtml += `
                     <tr>
-                        <td>${s.name}</td>
+                        <td>${s.custName}</td>
+                        <td>${s.itemName}</td>
                         <td>${s.qty}</td>
-                        <td style="color: #059669; font-weight: 600;">Rs. ${s.profit}</td>
+                        <td>Rs. ${s.total}</td>
                     </tr>
                 `;
             });
