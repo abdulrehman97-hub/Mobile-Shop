@@ -3,175 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Karam Mobiles & Accessories - AirPods Pro 2</title>
+    <title>Al-Karam Mobiles - Stock & Sales System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2563eb; --whatsapp: #25D366; --dark: #0f172a; --light: #f8fafc; --danger: #dc2626; }
+        :root { --primary: #2563eb; --success: #059669; --danger: #dc2626; --dark: #0f172a; --light: #f8fafc; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; padding-bottom: 40px; }
-        header { background: linear-gradient(135deg, #1e293b, #0f172a); color: white; text-align: center; padding: 25px 15px; }
-        header h1 { font-size: 24px; font-weight: 700; }
-        header p { font-size: 13px; color: #94a3b8; margin-top: 3px; }
-        .promo-banner { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; text-align: center; padding: 12px; font-weight: 600; font-size: 14px; }
-        .live-stats { background: #0f172a; color: #38bdf8; text-align: center; padding: 8px; font-size: 12px; font-weight: 500; }
-        .live-stats span { color: #22c55e; font-weight: 700; }
-        .timer-container { background: #1e293b; color: white; text-align: center; padding: 12px; font-size: 14px; display: flex; justify-content: center; gap: 15px; font-weight: 500; }
-        .timer-box span { color: #f59e0b; font-weight: 700; }
-        .container { max-width: 550px; margin: 20px auto; padding: 0 15px; }
-        .product-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; }
-        .product-image { width: 100%; height: 420px; object-fit: cover; background: #0f172a; }
-        .product-details { padding: 20px; }
-        .badge { background: #fee2e2; color: var(--danger); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; }
-        .product-title { font-size: 20px; font-weight: 700; margin-bottom: 5px; }
-        .price-section { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-        .current-price { font-size: 26px; font-weight: 700; color: #059669; }
-        .old-price { font-size: 16px; color: #94a3b8; text-decoration: line-through; }
-        .form-section { background: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
-        .form-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: #334155; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; }
-        .input-group { margin-bottom: 12px; }
-        .input-group label { display: block; font-size: 12px; font-weight: 500; color: #64748b; margin-bottom: 4px; }
-        .form-control { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; outline: none; background: white; }
-        .whatsapp-order-btn { display: block; width: 100%; background-color: var(--whatsapp); color: white; border: none; padding: 14px; font-size: 16px; font-weight: 600; border-radius: 10px; cursor: pointer; text-align: center; text-decoration: none; }
-        .float-wa { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; border-radius: 50px; padding: 12px 20px; display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration: none; z-index: 100; }
-        footer { text-align: center; margin-top: 30px; font-size: 12px; color: #64748b; }
+        body { background-color: var(--light); color: var(--dark); padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { font-size: 20px; text-align: center; margin-bottom: 20px; color: var(--primary); }
+        .section { margin-bottom: 25px; padding: 15px; background: #f1f5f9; border-radius: 8px; }
+        .section h2 { font-size: 15px; margin-bottom: 10px; color: #334155; }
+        .input-group { margin-bottom: 10px; }
+        .input-group label { display: block; font-size: 12px; font-weight: 500; margin-bottom: 3px; }
+        .form-control { width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; }
+        .btn { background: var(--primary); color: white; border: none; padding: 10px; width: 100%; font-weight: 600; border-radius: 6px; cursor: pointer; margin-top: 5px; }
+        .btn-success { background: var(--success); }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        table, th, td { border: 1px solid #cbd5e1; }
+        th, td { padding: 8px; text-align: center; }
+        th { background: #e2e8f0; }
+        .stats-box { display: flex; gap: 10px; margin-bottom: 20px; }
+        .stat-card { flex: 1; background: #e0f2fe; padding: 12px; border-radius: 8px; text-align: center; }
+        .stat-card h3 { font-size: 13px; color: #0369a1; }
+        .stat-card p { font-size: 18px; font-weight: 700; color: #0284c7; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Al-Karam Mobiles & Accessories</h1>
-        <p>Exclusive Weekly Gadget Deals</p>
-    </header>
 
-    <div class="promo-banner">🔥 AIRPODS PRO 2 - LIMITED TIME WEEKLY DEAL 🔥</div>
-    
-    <div class="live-stats">
-        👀 Live Watchers: <span id="visitor-count">48</span> people viewing this deal right now
-    </div>
-
-    <!-- رواں دواں ٹائمر -->
-    <div class="timer-container">
-        <div>Deal Ends In:</div>
-        <div class="timer-box"><span id="days">07</span>D</div>
-        <div class="timer-box"><span id="hours">00</span>H</div>
-        <div class="timer-box"><span id="mins">00</span>M</div>
-        <div class="timer-box"><span id="secs">00</span>S</div>
-    </div>
-    
     <div class="container">
-        <div class="product-card">
-            <!-- آپ کی اصلی ہاتھ والی تصویر اب براہ راست اس کوڈ کے اندر ایمبیڈ ہے، یہ کبھی فیل نہیں ہوگی -->
-            <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?q=80&w=1000&auto=format&fit=crop" alt="AirPods Pro 2" class="product-image">
-            
-            <div class="product-details">
-                <span class="badge">Hot Selling Deal</span>
-                <div class="product-title">AirPods Pro 2 (High Quality)</div>
-                
-                <div class="price-section">
-                    <div class="current-price">Rs. 650</div>
-                    <div class="old-price">Rs. 1,800</div>
-                </div>
+        <h1>📱 Al-Karam Stock & Sales Manager</h1>
 
-                <div class="form-section">
-                    <div class="form-title">Enter Your Complete Delivery Details</div>
-                    <div class="input-group">
-                        <label>Your Full Name:</label>
-                        <input type="text" id="cust-name" class="form-control" placeholder="e.g. Ali Ahmed">
-                    </div>
-                    <div class="input-group">
-                        <label>Phone Number:</label>
-                        <input type="tel" id="cust-phone" class="form-control" placeholder="e.g. 03286688441">
-                    </div>
-                    <div class="input-group">
-                        <label>Complete Delivery Address & City:</label>
-                        <input type="text" id="cust-address" class="form-control" placeholder="House #, Street, City...">
-                    </div>
-                    <div class="input-group">
-                        <label>Select Payment Method:</label>
-                        <select id="pay-method" class="form-control">
-                            <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
-                            <option value="JazzCash Advance">JazzCash (Advance Payment)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button class="whatsapp-order-btn" onclick="submitOrder()">Place Order via WhatsApp 📱</button>
+        <!-- ڈیش بورڈ (منافع اور سیل کی سمری) -->
+        <div class="stats-box">
+            <div class="stat-card">
+                <h3>Total Sales</h3>
+                <p id="total-sales">Rs. 0</p>
             </div>
+            <div class="stat-card" style="background: #d1fae5;">
+                <h3 style="color: #065f46;">Total Profit</h3>
+                <p id="total-profit" style="color: #047857;">Rs. 0</p>
+            </div>
+        </div>
+
+        <!-- 1. نیا پروڈکٹ یا اسٹاک ایڈ کرنے کا فارم -->
+        <div class="section">
+            <h2>📦 Add New Item to Stock</h2>
+            <div class="input-group">
+                <label>Item Name:</label>
+                <input type="text" id="item-name" class="form-control" placeholder="e.g. AirPods Pro 2">
+            </div>
+            <div class="input-group">
+                <label>Quantity Available:</label>
+                <input type="number" id="item-qty" class="form-control" placeholder="e.g. 10">
+            </div>
+            <div class="input-group">
+                <label>Cost Price (खरीद मूल्य):</label>
+                <input type="number" id="item-cost" class="form-control" placeholder="e.g. 500">
+            </div>
+            <div class="input-group">
+                <label>Selling Price (बिक्री मूल्य):</label>
+                <input type="number" id="item-price" class="form-control" placeholder="e.g. 650">
+            </div>
+            <button class="btn" onclick="addStock()">Add to Stock</button>
+        </div>
+
+        <!-- 2. اسٹاک کی لسٹ اور سیل کرنے کا سیکشن -->
+        <div class="section">
+            <h2>🛒 Available Stock & Sell</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="stock-table-body">
+                    <!-- یہاں اسٹاک شو ہوگا -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3. آج کی سیلز ہسٹری -->
+        <div class="section">
+            <h2>📜 Sales History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Sold Qty</th>
+                        <th>Profit</th>
+                    </tr>
+                </thead>
+                <tbody id="sales-table-body">
+                    <!-- یہاں بکی ہوئی چیزیں آئیں گی -->
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <a href="https://wa.me/923286688441?text=Hi!%20I%20have%20a%20question%20about%20AirPods%20Pro%202" class="float-wa" target="_blank">
-        💬 Chat on WhatsApp
-    </a>
-
-    <footer><p>&copy; 2026 Al-Karam Mobiles & Accessories. All rights reserved.</p></footer>
-
     <script>
-        // لائیو ویورز کا کاؤنٹر
-        let currentViewers = 48;
-        setInterval(() => {
-            let change = Math.floor(Math.random() * 3) - 1;
-            currentViewers += change;
-            if (currentViewers < 35) currentViewers = 35;
-            if (currentViewers > 65) currentViewers = 65;
-            document.getElementById('visitor-count').innerText = currentViewers;
-        }, 4000);
+        let stock = JSON.parse(localStorage.getItem('shop_stock')) || [];
+        let sales = JSON.parse(localStorage.getItem('shop_sales')) || [];
 
-        // ٹائمر کا سسٹم جو کبھی نہیں رکے گا
-        function startTimer() {
-            const totalDuration = 7 * 24 * 60 * 60 * 1000; 
-            let endTime = localStorage.getItem('alkaram_deal_end_time');
-
-            if (!endTime) {
-                endTime = new Date().getTime() + totalDuration;
-                localStorage.setItem('alkaram_deal_end_time', endTime);
-            } else {
-                endTime = parseInt(endTime);
-            }
-
-            function updateClock() {
-                const now = new Date().getTime();
-                let distance = endTime - now;
-
-                if (distance < 0) {
-                    endTime = new Date().getTime() + totalDuration;
-                    localStorage.setItem('alkaram_deal_end_time', endTime);
-                    distance = totalDuration;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerText = String(days).padStart(2, '0');
-                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
-                document.getElementById("mins").innerText = String(mins).padStart(2, '0');
-                document.getElementById("secs").innerText = String(secs).padStart(2, '0');
-            }
-
-            updateClock();
-            setInterval(updateClock, 1000);
+        function saveData() {
+            localStorage.setItem('shop_stock', JSON.stringify(stock));
+            localStorage.setItem('shop_sales', JSON.stringify(sales));
         }
 
-        startTimer();
+        function addStock() {
+            let name = document.getElementById('item-name').value.trim();
+            let qty = parseInt(document.getElementById('item-qty').value);
+            let cost = parseFloat(document.getElementById('item-cost').value);
+            let price = parseFloat(document.getElementById('item-price').value);
 
-        // واٹس ایپ آرڈر سبمٹ فنکشن
-        function submitOrder() {
-            const name = document.getElementById('cust-name').value.trim();
-            const phone = document.getElementById('cust-phone').value.trim();
-            const address = document.getElementById('cust-address').value.trim();
-            const payment = document.getElementById('pay-method').value;
-            const shopWhatsApp = "923286688441"; 
-
-            if(!name || !phone || !address) { 
-                alert("Please fill in your Name, Phone Number, and Complete Address!"); 
-                return; 
+            if(!name || isNaN(qty) || isNaN(cost) || isNaN(price)) {
+                alert("Please fill all fields correctly!");
+                return;
             }
 
-            const message = `New Order Received! 🛒\n\n*Store:* Al-Karam Mobiles & Accessories\n*Product:* AirPods Pro 2 - Rs. 650\n\n*Customer Details:*\n*Name:* ${name}\n*Phone:* ${phone}\n*Address:* ${address}\n*Payment Method:* ${payment}`;
-            
-            window.open(`https://wa.me/${shopWhatsApp}?text=${encodeURIComponent(message)}`, '_blank');
+            stock.push({ id: Date.now(), name, qty, cost, price });
+            saveData();
+            renderTables();
+
+            document.getElementById('item-name').value = '';
+            document.getElementById('item-qty').value = '';
+            document.getElementById('item-cost').value = '';
+            document.getElementById('item-price').value = '';
         }
+
+        function sellItem(index) {
+            let sellQty = prompt("Enter quantity to sell:", "1");
+            if(!sellQty) return;
+            sellQty = parseInt(sellQty);
+
+            if(isNaN(sellQty) || sellQty <= 0) {
+                alert("Invalid quantity!");
+                return;
+            }
+
+            if(sellQty > stock[index].qty) {
+                alert("Not enough stock available!");
+                return;
+            }
+
+            let item = stock[index];
+            item.qty -= sellQty;
+
+            let itemSales = sellQty * item.price;
+            let itemProfit = sellQty * (item.price - item.cost);
+
+            sales.push({ name: item.name, qty: sellQty, profit: itemProfit, total: itemSales });
+
+            if(item.qty === 0) {
+                stock.splice(index, 1); // اگر اسٹاک ختم ہو جائے تو لسٹ سے ہٹا دیں
+            }
+
+            saveData();
+            renderTables();
+        }
+
+        function renderTables() {
+            let stockHtml = '';
+            let totalSalesAmount = 0;
+            let totalProfitAmount = 0;
+
+            stock.forEach((item, index) => {
+                stockHtml += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.qty}</td>
+                        <td>Rs. ${item.price}</td>
+                        <td><button class="btn btn-success" style="padding: 4px 8px; font-size: 11px;" onclick="sellItem(${index})">Sell</button></td>
+                    </tr>
+                `;
+            });
+            document.getElementById('stock-table-body').html = stockHtml; // Safe fallback below
+            document.getElementById('stock-table-body').innerHTML = stockHtml;
+
+            let salesHtml = '';
+            sales.forEach(s => {
+                totalSalesAmount += s.total;
+                totalProfitAmount += s.profit;
+                salesHtml += `
+                    <tr>
+                        <td>${s.name}</td>
+                        <td>${s.qty}</td>
+                        <td style="color: #059669; font-weight: 600;">Rs. ${s.profit}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('sales-table-body').innerHTML = salesHtml;
+
+            document.getElementById('total-sales').innerText = `Rs. ${totalSalesAmount}`;
+            document.getElementById('total-profit').innerText = `Rs. ${totalProfitAmount}`;
+        }
+
+        renderTables();
     </script>
 </body>
 </html>
