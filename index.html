@@ -31,20 +31,20 @@
         .stat-card p { font-size: 16px; font-weight: 700; color: #0284c7; }
         .action-btns { display: flex; gap: 4px; justify-content: center; }
 
-        /* بل کا ڈیزائن (پرنٹ یا دیکھنے کے لیے) */
+        /* بل کا موڈل */
         .invoice-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000; }
         .invoice-content { background: white; width: 90%; max-width: 400px; padding: 20px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
         .invoice-header { text-align: center; border-bottom: 2px dashed #cbd5e1; padding-bottom: 10px; margin-bottom: 10px; }
         .invoice-details { font-size: 13px; margin-bottom: 10px; }
         .invoice-details p { margin-bottom: 4px; }
-        .print-btn { background: #0f172a; color: white; margin-top: 15px; }
+        .print-btn { background: #0f172a; color: white; margin-top: 10px; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>📱 Al-Karam Mobiles & Accessories</h1>
-        <div class="sub-title">Professional Stock, Sales & Billing System</div>
+        <div class="sub-title">POS, Inventory & Saved Bill Storage System</div>
 
         <!-- ڈیش بورڈ بمعہ پاسورڈ لاک P.AK.123 -->
         <div class="stats-box">
@@ -83,7 +83,7 @@
             <button class="btn" onclick="addStock()">Add to Stock</button>
         </div>
 
-        <!-- 2. اسٹاک لسٹ، سیل اور ایڈٹ -->
+        <!-- 2. اسٹاک لسٹ اور سیل -->
         <div class="section">
             <h2>🛒 Available Stock & Direct Billing</h2>
             <table>
@@ -95,42 +95,41 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="stock-table-body">
-                    <!-- اسٹاک یہاں آئے گا -->
-                </tbody>
+                <tbody id="stock-table-body"></tbody>
             </table>
         </div>
 
-        <!-- 3. سیلز ہسٹری -->
+        <!-- 3. محفوظ شدہ بلز اور سرچ سسٹم (Saved Invoices & Search) -->
         <div class="section">
-            <h2>📜 Sales History</h2>
+            <h2>🔍 Saved Bills & Search Invoice</h2>
+            <div class="input-group">
+                <label>Search by Bill No or Customer Name:</label>
+                <input type="text" id="search-query" class="form-control" placeholder="e.g. INV-1715 or Ali" onkeyup="renderTables()">
+            </div>
             <table>
                 <thead>
                     <tr>
+                        <th>Bill No</th>
                         <th>Customer</th>
                         <th>Item</th>
-                        <th>Qty</th>
-                        <th>Total</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="sales-table-body">
-                    <!-- سیلز ریکارڈ یہاں آئے گا -->
-                </tbody>
+                <tbody id="sales-table-body"></tbody>
             </table>
         </div>
     </div>
 
-    <!-- بل (Invoice) پاپ اپ ونڈو -->
+    <!-- بل (Invoice) دیکھنے اور پرنٹ کرنے کا موڈل -->
     <div class="invoice-modal" id="invoiceModal">
         <div class="invoice-content">
             <div class="invoice-header">
                 <h3>Al-Karam Mobiles & Accessories</h3>
-                <p style="font-size: 11px; color: #64748b;">Cash Receipt / Bill</p>
+                <p style="font-size: 11px; color: #64748b;">Official Cash Invoice</p>
             </div>
-            <div class="invoice-details" id="invoiceBody">
-                <!-- بل کا ڈیٹا یہاں جেনریٹ ہوگا -->
-            </div>
-            <button class="btn print-btn" onclick="closeInvoice()">Close / Done</button>
+            <div class="invoice-details" id="invoiceBody"></div>
+            <button class="btn print-btn" onclick="window.print()">🖨️ Print Bill</button>
+            <button class="btn btn-danger" style="margin-top: 5px;" onclick="closeInvoice()">Close</button>
         </div>
     </div>
 
@@ -195,15 +194,17 @@
             item.qty -= sellQty;
             let itemTotal = sellQty * item.price;
             let itemProfit = sellQty * (item.price - item.cost);
+            let billNo = 'INV-' + Math.floor(1000 + Math.random() * 9000);
 
             let saleRecord = {
+                billNo: billNo,
                 custName: custName || "Guest",
                 custAddress: custAddress || "N/A",
                 itemName: item.name,
                 qty: sellQty,
                 total: itemTotal,
                 profit: itemProfit,
-                date: new Date().toLocaleDateString()
+                date: new Date().toLocaleString()
             };
 
             sales.push(saleRecord);
@@ -214,7 +215,7 @@
 
             saveData();
             renderTables();
-            showInvoice(saleRecord);
+            viewInvoice(sales.length - 1);
         }
 
         function editItem(index) {
@@ -238,13 +239,16 @@
             renderTables();
         }
 
-        function showInvoice(sale) {
+        function viewInvoice(salesIndex) {
+            let sale = sales[salesIndex];
             let html = `
+                <p><b>Bill No:</b> ${sale.billNo}</p>
                 <p><b>Date:</b> ${sale.date}</p>
                 <p><b>Customer Name:</b> ${sale.custName}</p>
                 <p><b>Address / Phone:</b> ${sale.custAddress}</p>
                 <hr style="border: 0.5px solid #cbd5e1; margin: 8px 0;">
-                <p><b>Item Purchased:</b> ${sale.itemName} (x${sale.qty})</p>
+                <p><b>Item:</b> ${sale.itemName}</p>
+                <p><b>Quantity:</b> ${sale.qty}</p>
                 <p><b>Total Amount:</b> <span style="color: #059669; font-weight: bold;">Rs. ${sale.total}</span></p>
                 <hr style="border: 0.5px solid #cbd5e1; margin: 8px 0;">
                 <p style="text-align: center; font-size: 11px; color: #64748b;">Thank you for shopping with Al-Karam Mobiles!</p>
@@ -279,18 +283,25 @@
             });
             document.getElementById('stock-table-body').innerHTML = stockHtml;
 
+            let searchQuery = document.getElementById('search-query').value.toLowerCase();
             let salesHtml = '';
-            sales.forEach(s => {
+
+            sales.forEach((s, index) => {
                 totalSalesAmount += s.total;
                 totalProfitAmount += s.profit;
-                salesHtml += `
-                    <tr>
-                        <td>${s.custName}</td>
-                        <td>${s.itemName}</td>
-                        <td>${s.qty}</td>
-                        <td>Rs. ${s.total}</td>
-                    </tr>
-                `;
+
+                if(s.billNo.toLowerCase().includes(searchQuery) || s.custName.toLowerCase().includes(searchQuery)) {
+                    salesHtml += `
+                        <tr>
+                            <td><b>${s.billNo}</b></td>
+                            <td>${s.custName}</td>
+                            <td>${s.itemName} (${s.qty})</td>
+                            <td>
+                                <button class="btn" style="padding: 2px 5px; font-size: 10px; margin-top:0;" onclick="viewInvoice(${index})">View / Print</button>
+                            </td>
+                        </tr>
+                    `;
+                }
             });
             document.getElementById('sales-table-body').innerHTML = salesHtml;
 
